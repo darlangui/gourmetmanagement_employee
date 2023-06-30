@@ -186,7 +186,6 @@ export const Main = styled.div`
           }
         }
       }
-      
   }
 `;
 
