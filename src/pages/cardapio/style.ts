@@ -79,10 +79,11 @@ export const Main = styled.div`
     width: 100%;
     height: 96px;
     
-    padding: 32px 48px;
+    padding: 0px 48px;
     
     display: flex;
     justify-content: space-between;
+    align-items: center;
     
     border-bottom: 2px solid #E7E7E7;
     
@@ -131,6 +132,61 @@ export const Main = styled.div`
     width: 100%;
 
     flex-grow: 1;
+    
+    padding: 32px 48px;
+    
+    display: flex;
+    justify-content: center;
+
+    background-color: #FAFAFA;
+      
+      .card-content{
+        width: 1280px;
+        height: 100%;
+        
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px 90px;
+        
+        .card{
+          background-color: ${colors.grayscale.white};
+          width: 252px;
+          height: 233px;
+          border-radius: 8px;
+          border: 1px solid #E7E7E7;
+          padding: 16px;
+
+          display: flex;
+          flex-direction: column;
+
+          align-items: center;
+          img{
+            width: 220px;
+            height: 113px;
+            border-radius: 8px;
+          }
+
+          span{
+            margin-top: 16px;
+          }
+
+          .price{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 220px;
+            height: 24px;
+
+            margin-top: 6px;
+            img{
+              height: 24px;
+              width: 24px;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      
   }
 `;
 

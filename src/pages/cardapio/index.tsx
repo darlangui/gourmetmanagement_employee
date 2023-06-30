@@ -7,7 +7,10 @@ import file from '../../assets/file-text.png';
 import order from '../../assets/order.png';
 import input from '../../assets/input.png';
 import search from '../../assets/search.png';
-const HomePage: React.FC = () => {
+import rowBellow from '../../assets/rowBellow.png';
+
+import fixed from '../../assets/hanburguer.png';
+const Cardapio: React.FC = () => {
     return (
         <style.Container>
             <style.Header>
@@ -42,11 +45,20 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
                 <div className="content">
-
+                    <div className="card-content">
+                        <div className="card">
+                            <img src={fixed} alt="Comida"/>
+                            <span>Feijoada da família brasileira tamanho grande</span>
+                            <div className="price">
+                                <h3>R$ 90,00</h3>
+                                <img src={rowBellow} alt="seta"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </style.Main>
         </style.Container>
     );
 };
 
-export default HomePage;
+export default Cardapio;
