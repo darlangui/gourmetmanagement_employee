@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import * as style from './style';
+import api from '../../services/api';
 
 import user from '../../assets/elipse.png';
 import row from '../../assets/row.png'
@@ -9,8 +10,55 @@ import input from '../../assets/input.png';
 import search from '../../assets/search.png';
 import rowBellow from '../../assets/rowBellow.png';
 
-import fixed from '../../assets/hanburguer.png';
+interface Cardapio{
+    id: number;
+    nome: string;
+    ingredientes: string;
+    valor: number;
+    descricao: string;
+    status: boolean;
+    caminho: string;
+}
+
 const Cardapio: React.FC = () => {
+    const [cardapioItems, setCardapioItems] = useState<Cardapio[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await api('/cardapio');
+                const items = response.data;
+
+                const itemsWithImages = await Promise.all(
+                    items.map(async (item: Cardapio) => {
+                        const imageResponse = await api(`/media/${item.caminho}`, {
+                            responseType: 'blob',
+                        });
+                        const imageUrl = URL.createObjectURL(imageResponse.data);
+
+                        return { ...item, caminho: imageUrl };
+                    })
+                );
+
+                setCardapioItems(itemsWithImages);
+            } catch (error) {
+                console.error('Erro ao buscar os dados:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const filteredItems = cardapioItems.filter((item) =>
+        item.nome.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+
+
     return (
         <style.Container>
             <style.Header>
@@ -38,6 +86,8 @@ const Cardapio: React.FC = () => {
                                             id="search"
                                             type="search"
                                             placeholder="Buscar ..."
+                                            value={searchTerm}
+                                            onChange={handleSearch}
                                         />
                                 </div>
                             </label>
@@ -46,14 +96,24 @@ const Cardapio: React.FC = () => {
                 </div>
                 <div className="content">
                     <div className="card-content">
-                        <div className="card">
-                            <img src={fixed} alt="Comida"/>
-                            <span>Feijoada da família brasileira tamanho grande</span>
-                            <div className="price">
-                                <h3>R$ 90,00</h3>
-                                <img src={rowBellow} alt="seta"/>
-                            </div>
-                        </div>
+                        {filteredItems.length > 0 ? (
+                            <ul>
+                                {filteredItems.map((item) => (
+                                    <li key={item.id}>
+                                        <div className="card">
+                                            <img src={item.caminho} alt={item.nome} />
+                                            <span>{item.nome}</span>
+                                            <div className="price">
+                                                <h3>R$ {item.valor}</h3>
+                                                <img src={rowBellow} alt="seta" />
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>Infelizmente nada foi encontrado!</p>
+                        )}
                     </div>
                 </div>
             </style.Main>

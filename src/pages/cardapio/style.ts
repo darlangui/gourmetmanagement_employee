@@ -87,6 +87,8 @@ export const Main = styled.div`
     
     border-bottom: 2px solid #E7E7E7;
     
+    font-family: 'Lato', sans-serif;
+    
     .search{
       display: flex;
       justify-content: space-between;
@@ -128,6 +130,8 @@ export const Main = styled.div`
   }
   
   .content{
+    font-family: 'Poppins', sans-serif;
+    
     height: 100%;
     width: 100%;
 
@@ -186,6 +190,20 @@ export const Main = styled.div`
           }
         }
       }
+    
+      .error {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+    .noResult {
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;
 

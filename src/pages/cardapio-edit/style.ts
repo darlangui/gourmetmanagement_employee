@@ -301,7 +301,25 @@ export const Main = styled.div`
           line-height: 24px;
           letter-spacing: 0px;
           text-align: left;
+        }
 
+        .deletar{
+          margin-left: 56px;
+          width: 112px;
+          height: 48px;
+          border-radius: 8px;
+          border: 1.5px solid ${colors.primary};
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: ${colors.primary};
+          background-color: ${colors.grayscale.white};
+          cursor: pointer;
+          font-family: Lato;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: 0px;
         }
       }
       
