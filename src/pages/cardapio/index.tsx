@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as style from './style';
-import api from '../../services/api';
+import { api, setAuthHeader } from '../../services/api';
 
 import user from '../../assets/elipse.png';
 import row from '../../assets/row.png'
@@ -23,13 +24,13 @@ interface Cardapio{
 const Cardapio: React.FC = () => {
     const [cardapioItems, setCardapioItems] = useState<Cardapio[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await api('/cardapio');
                 const items = response.data;
-
                 const itemsWithImages = await Promise.all(
                     items.map(async (item: Cardapio) => {
                         const imageResponse = await api(`/media/${item.caminho}`, {
@@ -49,6 +50,15 @@ const Cardapio: React.FC = () => {
 
         fetchData();
     }, []);
+    
+
+    const handleEditItem = (item: Cardapio) => {
+        navigate('/editItem', { state: { item } });
+    };
+
+    const handleAddItem = () => {
+        navigate('/addItem');
+    };
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
@@ -91,7 +101,7 @@ const Cardapio: React.FC = () => {
                                         />
                                 </div>
                             </label>
-                        <img src={input} alt="Adicionar"/>
+                        <img src={input} alt="Adicionar" onClick={handleAddItem} />
                     </div>
                 </div>
                 <div className="content">
@@ -105,7 +115,7 @@ const Cardapio: React.FC = () => {
                                             <span>{item.nome}</span>
                                             <div className="price">
                                                 <h3>R$ {item.valor}</h3>
-                                                <img src={rowBellow} alt="seta" />
+                                                <img src={rowBellow} alt="seta" onClick={() => handleEditItem(item)} />
                                             </div>
                                         </div>
                                     </li>

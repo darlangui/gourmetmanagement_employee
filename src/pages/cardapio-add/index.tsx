@@ -1,4 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
+import { api, setAuthHeader } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 
 import user from '../../assets/elipse.png';
@@ -6,14 +8,12 @@ import row from '../../assets/row.png'
 import file from '../../assets/file-text.png';
 import order from '../../assets/order.png';
 import input from '../../assets/input.png';
-import search from '../../assets/search.png';
-import rowBellow from '../../assets/rowBellow.png';
-
-import fixed from '../../assets/hanburguer.png';
 
 const CardapioAdd: React.FC = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
     const fileNameSpanRef = useRef<HTMLSpanElement>(null);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const navigation = useNavigate();
 
     useEffect(() => {
         const fileInput = fileInputRef.current;
@@ -37,6 +37,57 @@ const CardapioAdd: React.FC = () => {
         }
     }, []);
 
+
+    const [nome, setNome] = useState("");
+    const [ingredientes, setIngredientes] = useState("");
+    const [valor, setValor] = useState(0);
+    const [descricao, setDescricao] = useState("");
+    const [imagem, setImagem] = useState<File | null>(null);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+
+        const token = window.localStorage.getItem('authToken');
+
+        if (!token) {
+            console.error('Token de autenticação não encontrado');
+            return;
+        }
+
+        // Criando um novo FormData para incluir a imagem no corpo da requisição
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('ingredientes', ingredientes);
+        formData.append('valor', String(valor));
+        formData.append('descricao', descricao);
+        formData.append('status', 'true');
+        if (imagem) {
+            formData.append('caminho', imagem);
+        }
+        setAuthHeader(token);
+        try {
+            const response = await api.post('/cardapio', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                validateStatus: (status) => status >= 200 && status < 400, // Adicione esta linha
+            });
+
+            if (response.status >= 200 && response.status < 400) {
+                navigation('/cardapio');
+            } else {
+                setErrorMessage('Ocorreu um erro ao processar a solicitação. Tente novamente mais tarde.');
+            }
+        } catch (error: any) {
+            console.error('Erro ao enviar os dados', error);
+            setErrorMessage('Ocorreu um erro ao processar a solicitação. Tente novamente mais tarde.');
+        }
+    };
+
+    const backCardapio = () => {
+        navigation('/cardapio');
+    };
 
     return (
         <style.Container>
@@ -71,6 +122,7 @@ const CardapioAdd: React.FC = () => {
                                 type="text"
                                 id="nome"
                                 placeholder="Nome do item do seu cardápio"
+                                onChange={(e) => setNome(e.target.value)}
                             />
                         </label>
                     </div>
@@ -81,6 +133,7 @@ const CardapioAdd: React.FC = () => {
                                 type="text"
                                 id="preco"
                                 placeholder="R$ 0,00"
+                                onChange={(e) => setValor(Number(e.target.value))}
                             />
                         </label>
                     </div>
@@ -90,7 +143,7 @@ const CardapioAdd: React.FC = () => {
                                 <div className="sub-title"><h3>Descrição</h3><span>(opcional)</span></div>
                                 <span>Máximo 120 caracteres</span>
                             </div>
-                            <textarea id="descricao" placeholder="Descrição do item"></textarea>
+                            <textarea id="descricao" placeholder="Descrição do item" onChange={(e) => setDescricao(e.target.value)}></textarea>
                         </label>
                     </div>
                     <div className="ingred">
@@ -99,16 +152,17 @@ const CardapioAdd: React.FC = () => {
                                 <div className="sub-title"><h3>Ingredientes</h3><span>(opcional)</span></div>
                                 <span>Máximo 120 caracteres</span>
                             </div>
-                            <textarea id="ingrecientes" placeholder="Ingredientes do seu item"></textarea>
+                            <textarea id="ingredientes" placeholder="Ingredientes do seu item" onChange={(e) => setIngredientes(e.target.value)}></textarea>
                         </label>
                     </div>
                     <div className="image">
-                        <label htmlFor="image">
+                        <label htmlFor="caminho">
                             <h3>Imagem</h3>
                             <input
                                 type="file"
-                                id="image"
+                                id="caminho"
                                 ref={fileInputRef}
+                                onChange={(e) => setImagem(e.target.files ? e.target.files[0] : null)}
                             />
                             <div className="select">
                                 <span id="inputName" ref={fileNameSpanRef}>Imagem do seu item</span>
@@ -117,8 +171,10 @@ const CardapioAdd: React.FC = () => {
                         </label>
                     </div>
                     <div className="op">
-                        <div className="voltar">Voltar</div>
-                        <div className="salvar">Salvar</div>
+                        <div className="voltar" onClick={backCardapio}>Voltar</div>
+                        <div className="salvar" onClick={handleSubmit}>Salvar</div>
+
+                        {errorMessage && <div className="error-message">{errorMessage}</div>}
                     </div>
                 </div>
             </style.Main>
