@@ -5,8 +5,8 @@ import * as style from './style';
 
 import user from '../../assets/elipse.png';
 import row from '../../assets/row.png'
-import file from '../../assets/file-text.png';
-import order from '../../assets/order.png';
+import file from '../../assets/file-text-select.png';
+import order from '../../assets/order-unselect.png';
 import input from '../../assets/input.png';
 
 const CardapioAdd: React.FC = () => {

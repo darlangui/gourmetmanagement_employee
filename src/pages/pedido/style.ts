@@ -49,8 +49,8 @@ export const Header = styled.header`
         margin-top: 56px;
         cursor: pointer;
         img{
-          max-width: 48px;
-          max-height: 48px;
+          max-width: 32px;
+          max-height: 32px;
         }
       }
   

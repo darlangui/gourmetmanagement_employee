@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { getAuthToken, setAuthHeader } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,11 @@ declare global {
 }
 
 const Login: React.FC = () => {
+
+    useEffect(() => {
+        localStorage.clear();
+    }, []);
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -34,6 +39,7 @@ const Login: React.FC = () => {
             }
         }
     };
+
 
     return (
         <form onSubmit={handleLogin}>
