@@ -2,6 +2,8 @@ import React, { useState, useEffect  } from 'react';
 import { getAuthToken, setAuthHeader } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 
+import * as style from './style';
+
 declare global {
     interface Window {
         localStorage: Storage;
@@ -42,12 +44,29 @@ const Login: React.FC = () => {
 
 
     return (
-        <form onSubmit={handleLogin}>
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            <button type="submit">Login</button>
-            {error && <p>{error}</p>}
-        </form>
+        <style.Container>
+            <div className="right">
+                <div className="ilust_content">
+                    <div className="square"></div>
+                    <div className="blur"></div>
+                    <div className="blur_two"></div>
+                </div>
+            </div>
+
+            <form onSubmit={handleLogin}>
+                <label htmlFor="user">
+                    <span>Usuário: </span>
+                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                </label>
+                <label htmlFor="pass">
+                    <span>Senha: </span>
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                </label>
+
+                <button type="submit">Login</button>
+                {error && <p>{error}</p>}
+            </form>
+        </style.Container>
     );
 };
 
