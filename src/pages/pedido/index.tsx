@@ -10,7 +10,16 @@ import order from '../../assets/order.png';
 import input from '../../assets/input.png';
 import search from '../../assets/search.png';
 import rowBellow from '../../assets/rowBellow.png';
+import Cardapio from "../cardapio";
 
+interface Pedido{
+    id: number,
+    status: string,
+    quantidade: number;
+    cardapio: number;
+    comanda: number;
+    mesa: number;
+}
 
 const Pedido: React.FC = () => {
     const navigate = useNavigate();
@@ -21,6 +30,58 @@ const Pedido: React.FC = () => {
     const handleCardapio = () => {
         navigate('/cardapio');
     };
+
+    const [precosCardapio, setPrecosCardapio] = useState<{ [key: number]: number }>({});
+    const [valor, setValor] = useState<string>('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValor(e.target.value);
+    };
+
+    const [pedidos, setPedidos] = useState<Pedido[]>([]);
+    const [pedidosFiltrados, setPedidosFiltrados] = useState<Pedido[]>([]);
+
+    const fetchPedidos = async () => {
+        const token = window.localStorage.getItem('authToken');
+        if (!token) {
+            console.error('Token de autenticação não encontrado');
+            return;
+        }
+        try {
+            setAuthHeader(token);
+            const response = await api.get('/pedido');
+            const pedidosData: Pedido[] = response.data;
+            setPedidos(pedidosData);
+
+            // Obter os preços dos cardápios relacionados
+            const precos: { [key: number]: number } = {};
+            await Promise.all(
+                pedidosData.map(async (pedidoData: Pedido) => {
+                    const cardapioResponse = await api.get(`/cardapio/${pedidoData.cardapio}`);
+                    const cardapio = cardapioResponse.data;
+                    precos[pedidoData.cardapio] = cardapio.valor;
+                })
+            );
+            setPrecosCardapio(precos);
+        } catch (error) {
+            console.error('Erro ao obter os pedidos:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchPedidos();
+    }, []);
+
+    useEffect(() => {
+        if (valor === '') {
+            setPedidosFiltrados(pedidos);
+        } else {
+            const filteredPedidos = pedidos.filter((pedido) =>
+                pedido.id.toString().includes(valor)
+            );
+            setPedidosFiltrados(filteredPedidos);
+        }
+    }, [valor, pedidos]);
 
     return (
         <style.Container>
@@ -46,9 +107,11 @@ const Pedido: React.FC = () => {
                             <div className="input">
                                 <img src={search} alt={"Pesquisar"}/>
                                 <input
+                                    type="text"
                                     id="search"
-                                    type="search"
                                     placeholder="Buscar ..."
+                                    value={valor}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </label>
@@ -56,17 +119,25 @@ const Pedido: React.FC = () => {
                 </div>
                 <div className="content">
                     <div className="card-content">
-                        <div className="card">
-                            <div className="header">
-                                <h1>Nº 1</h1>
-                                <img src={rowBellow} alt="Seta"/>
+                        {pedidosFiltrados.length === 0 ? (
+                            <div>
+                                <p>Nenhum item</p>
                             </div>
-                            <div className="line"></div>
-                            <div className="main">
-                                <span>Items <h3>5 adicionados</h3></span>
-                                <span className="total">Total <h3>R$ 120,00</h3></span>
-                            </div>
-                        </div>
+                        ) : (
+                            pedidosFiltrados.map((pedido) => (
+                                <div className="card" key={pedido.id}>
+                                    <div className="header">
+                                        <h1>Nº {pedido.id}</h1>
+                                        <img src={rowBellow} alt="Seta"/>
+                                    </div>
+                                    <div className="line"></div>
+                                    <div className="main">
+                                        <span>Items <h3>{pedido.quantidade} adicionado(s)</h3></span>
+                                        <span className="total">Total <h3>R$ {precosCardapio[pedido.cardapio] * pedido.quantidade}</h3></span>
+                                    </div>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </div>
             </style.Main>
