@@ -5,10 +5,11 @@ import { api, setAuthHeader } from '../../services/api';
 
 import user from '../../assets/elipse.png';
 import row from '../../assets/row.png'
-import file from '../../assets/file-text.png';
-import order from '../../assets/order.png';
+import file from '../../assets/file-text-select.png';
+import order from '../../assets/order-unselect.png';
 import input from '../../assets/input.png';
 import search from '../../assets/search.png';
+
 import rowBellow from '../../assets/rowBellow.png';
 
 interface Cardapio{
@@ -50,7 +51,7 @@ const Cardapio: React.FC = () => {
 
         fetchData();
     }, []);
-    
+
 
     const handleEditItem = (item: Cardapio) => {
         navigate('/editItem', { state: { item } });
@@ -68,6 +69,13 @@ const Cardapio: React.FC = () => {
         item.nome.toLowerCase().startsWith(searchTerm.toLowerCase())
     );
 
+    const handlePedido = () => {
+        navigate('/pedido');
+    };
+
+    const handleCardapio = () => {
+      navigate('/cardapio');
+    };
 
     return (
         <style.Container>
@@ -79,10 +87,10 @@ const Cardapio: React.FC = () => {
                     </div>
                 </div>
                 <div className="file">
-                    <img src={file} alt="Cardapio"/>
+                    <img src={file} onClick={handleCardapio} alt="Cardapio"/>
                 </div>
                 <div className="order">
-                    <img src={order} alt="Pedidos"/>
+                    <img src={order} onClick={handlePedido} alt="Pedidos"/>
                 </div>
             </style.Header>
             <style.Main>

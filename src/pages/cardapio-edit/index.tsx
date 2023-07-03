@@ -4,8 +4,8 @@ import { api, setAuthHeader } from '../../services/api';
 import { useNavigate, useLocation } from 'react-router-dom';
 import user from "../../assets/elipse.png";
 import row from "../../assets/row.png";
-import file from "../../assets/file-text.png";
-import order from "../../assets/order.png";
+import file from '../../assets/file-text-select.png';
+import order from '../../assets/order-unselect.png';
 import input from "../../assets/input.png";
 
 interface Cardapio{
@@ -133,6 +133,10 @@ const  CardapioEdit: React.FC = () => {
         }
     };
 
+    const handleBack = () =>{
+        navigate('/cardapio');
+    };
+
     return (
         <style.Container>
             <style.Header>
@@ -216,7 +220,7 @@ const  CardapioEdit: React.FC = () => {
                         </label>
                     </div>
                     <div className="op">
-                        <div className="voltar">Voltar</div>
+                        <div className="voltar" onClick={handleBack}>Voltar</div>
                         <div className="deletar" onClick={handleDelete}>Deletar</div>
                         <div className="salvar" onClick={handleSave}>Salvar</div>
                         {errorMessage && <div className="error-message">{errorMessage}</div>}
