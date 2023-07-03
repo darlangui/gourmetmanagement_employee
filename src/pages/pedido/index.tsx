@@ -10,8 +10,6 @@ import order from '../../assets/order.png';
 import input from '../../assets/input.png';
 import search from '../../assets/search.png';
 import rowBellow from '../../assets/rowBellow.png';
-import Cardapio from "../cardapio";
-
 interface Pedido{
     id: number,
     status: string,
@@ -83,6 +81,10 @@ const Pedido: React.FC = () => {
         }
     }, [valor, pedidos]);
 
+    const redirectItemPedido = (pedido: Pedido) => {
+        navigate(`/pedidoView?pedidoId=${pedido.id}`);
+    };
+
     return (
         <style.Container>
             <style.Header>
@@ -128,7 +130,7 @@ const Pedido: React.FC = () => {
                                 <div className="card" key={pedido.id}>
                                     <div className="header">
                                         <h1>Nº {pedido.id}</h1>
-                                        <img src={rowBellow} alt="Seta"/>
+                                        <img src={rowBellow}  onClick={() => redirectItemPedido(pedido)} alt="Seta"/>
                                     </div>
                                     <div className="line"></div>
                                     <div className="main">

@@ -10,6 +10,7 @@ import Mesas from '../pages/mesas';
 import MesaView from '../pages/mesa-view';
 import Comandas from '../pages/comandas';
 import ComandaView from '../pages/comanda-view';
+import PedidoView from "../pages/pedido-view";
 
 interface ProtectedRouteProps {
     element: JSX.Element;
@@ -87,6 +88,14 @@ const AppRouter: React.FC = () => {
                     element={
                         <ProtectedRoute
                             element={<ComandaView />}
+                        />
+                    }
+                />
+                <Route
+                    path="/pedidoView"
+                    element={
+                        <ProtectedRoute
+                            element={<PedidoView />}
                         />
                     }
                 />
