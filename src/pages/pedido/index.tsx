@@ -40,7 +40,7 @@ const Pedido: React.FC = () => {
             </style.Header>
             <style.Main>
                 <div className="nav">
-                    <h1>Pedidos <span>(Mesas)</span> </h1>
+                    <h1>Pedidos</h1>
                     <div className="search">
                         <label htmlFor="search">
                             <div className="input">
@@ -56,7 +56,17 @@ const Pedido: React.FC = () => {
                 </div>
                 <div className="content">
                     <div className="card-content">
-
+                        <div className="card">
+                            <div className="header">
+                                <h1>Nº 1</h1>
+                                <img src={rowBellow} alt="Seta"/>
+                            </div>
+                            <div className="line"></div>
+                            <div className="main">
+                                <span>Items <h3>5 adicionados</h3></span>
+                                <span className="total">Total <h3>R$ 120,00</h3></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </style.Main>

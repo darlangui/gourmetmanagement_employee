@@ -91,7 +91,7 @@ export const Main = styled.div`
     
     .search{
       display: flex;
-      justify-content: space-between;
+      justify-content: end;
       
       height: 48px;
       width: 438px;
@@ -143,68 +143,80 @@ export const Main = styled.div`
     justify-content: center;
 
     background-color: #FAFAFA;
-      
-      .card-content{
-        width: 1280px;
-        height: 100%;
+    
+    .card-content{
+      width: 1280px;
+      height: 100%;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px 90px;
+    
+      .card{
+        background-color: ${colors.grayscale.white};
+        width: 302px;
+        height: 244px;
+        border-radius: 8px;
+        border: 1px solid #E7E7E7;
+        padding: 28px;
+        padding-top: 36px;
         
         display: flex;
-        flex-wrap: wrap;
-        gap: 40px 90px;
-        
-        .card{
-          background-color: ${colors.grayscale.white};
-          width: 252px;
-          height: 233px;
-          border-radius: 8px;
-          border: 1px solid #E7E7E7;
-          padding: 16px;
-
+        flex-direction: column;
+        align-items: center;
+        .header{
+          width: 250px;
+          height: 40px;
+          
           display: flex;
-          flex-direction: column;
-
-          align-items: center;
+          justify-content: space-between;
           img{
-            width: 220px;
-            height: 113px;
-            border-radius: 8px;
+            cursor: pointer;
+            width: 29px;
+            height: 29px;
           }
-
+        }
+        
+        .line{
+          margin-top: 35px;
+          height: 2px;
+          width: 250px;
+          background-color: #E8E8E8;
+        }
+        
+        .main{
+          margin-top: 30px;
+          height: 82px;
+          width: 250px;
+          
+          h3{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0px;
+            color: ${colors.grayscale.darkHigh};
+          }
+          
           span{
-            margin-top: 16px;
-          }
-
-          .price{
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            width: 220px;
-            height: 24px;
-
-            margin-top: 6px;
-            img{
-              height: 24px;
-              width: 24px;
-              cursor: pointer;
-            }
+            color: ${colors.grayscale.darkLight};
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0px;
+          }
+          
+          .total{
+            margin-top: 20px;
           }
         }
       }
-    
-      .error {
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
 
-    .noResult {
-      display:flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
   }
+    
+    
 `;
 
 

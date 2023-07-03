@@ -55,6 +55,18 @@ const CardapioAdd: React.FC = () => {
             return;
         }
 
+        if (!nome) {
+            setErrorMessage('Digite um nome para o produto.');
+            return;
+        }
+
+        if (!imagem) {
+            setErrorMessage('Selecione uma imagem.');
+            return;
+        }
+
+
+
         // Criando um novo FormData para incluir a imagem no corpo da requisição
         const formData = new FormData();
         formData.append('nome', nome);
@@ -163,6 +175,7 @@ const CardapioAdd: React.FC = () => {
                                 id="caminho"
                                 ref={fileInputRef}
                                 onChange={(e) => setImagem(e.target.files ? e.target.files[0] : null)}
+                                required
                             />
                             <div className="select">
                                 <span id="inputName" ref={fileNameSpanRef}>Imagem do seu item</span>

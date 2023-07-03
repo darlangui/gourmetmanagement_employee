@@ -303,6 +303,10 @@ export const Main = styled.div`
           text-align: left;
 
         }
+        .error-message{
+          margin-left: 20px;
+          color: ${colors.primary};
+        }
       }
       
     }
