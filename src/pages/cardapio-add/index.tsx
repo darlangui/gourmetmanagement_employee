@@ -100,15 +100,28 @@ const CardapioAdd: React.FC = () => {
     const backCardapio = () => {
         navigation('/cardapio');
     };
+    const [showLogout, setShowLogout] = useState(false);
+
+    const handleRowClick = () => {
+        setShowLogout(!showLogout);
+    };
+    const handleLogout = () => {
+        navigation('/');
+    };
 
     return (
         <style.Container>
             <style.Header>
                 <div className="user">
                     <img src={user} alt="Usuário" />
-                    <div className="row">
+                    <div className="row" onClick={handleRowClick}>
                         <img src={row} alt="Flexa de Opções" />
                     </div>
+                    {showLogout && (
+                        <div className="logout-option" onClick={handleLogout}>
+                            Sair
+                        </div>
+                    )}
                 </div>
                 <div className="file">
                     <img src={file} alt="Cardapio"/>

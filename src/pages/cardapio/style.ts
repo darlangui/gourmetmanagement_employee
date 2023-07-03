@@ -23,12 +23,31 @@ export const Header = styled.header`
   flex-direction: column;
   align-items: center;
   
+   
+  
     .user {
       height: 56px;
       width: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
+          .logout-option{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            width: 50px;
+            height: 30px;
+            border: 2px solid #E7E7E7;
+            font-family: 'Lato', sans-serif;
+            position: absolute;
+            cursor: pointer;
+            margin-top: 100px;
+          }
+          
+          .logout-option:hover{
+              color: red;
+          }
       
           img{
             max-width: 48px;
