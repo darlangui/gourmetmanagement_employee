@@ -195,6 +195,7 @@ export const Main = styled.div`
             line-height: 26px;
             letter-spacing: 0px;
             color: ${colors.grayscale.darkHigh};
+            
           }
           
           span{

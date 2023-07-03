@@ -49,8 +49,8 @@ export const Header = styled.header`
         margin-top: 56px;
         cursor: pointer;
         img{
-          max-width: 48px;
-          max-height: 48px;
+          max-width: 32px;
+          max-height: 32px;
         }
       }
   
@@ -119,12 +119,111 @@ export const Main = styled.div`
       padding: 32px 48px;
 
       display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: flex-start;
+      flex-direction: column;
 
       background-color: ${colors.grayscale.white};
+        
+        .pedido{
+          width: 1080px;
+          height: 100%;
+
+          border: 1px solid #E7E7E7;
+          border-radius: 8px;
+          padding: 24px;
+          
+          .title{
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+          }
+
+          .title-value{
+            display: flex;
+            font-size: 20px;
+            margin-top: 50px;
+            justify-content: space-between;
+          }
+          
+          
+          h3{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0px;
+            color: ${colors.grayscale.darkHigh};
+          }
+          
+          span{
+            display: flex;
+            justify-content: space-between;
+            color: ${colors.grayscale.darkLight};
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0px;
+          }
       }
+        .op{
+          display: flex;
+          gap: 10px;
+          margin-top: 20px;
+              
+          .voltar{
+            width: 112px;
+            height: 48px;
+            border-radius: 8px;
+            border: 1.5px solid ${colors.primary};
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: ${colors.primary};
+            background-color: ${colors.grayscale.white};
+            cursor: pointer;
+            font-family: Lato;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 0px;
+          }
+
+        .salvar{
+          margin-left: 56px;
+          width: 112px;
+          height: 48px;
+          border-radius: 8px;
+          background-color: ${colors.primary};
+          color: ${colors.grayscale.white};
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          font-family: Lato;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: 0px;
+          text-align: left;
+        }
+
+        .deletar{
+          margin-left: 56px;
+          width: 112px;
+          height: 48px;
+          border-radius: 8px;
+          border: 1.5px solid ${colors.primary};
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: ${colors.primary};
+          background-color: ${colors.grayscale.white};
+          cursor: pointer;
+          font-family: Lato;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 24px;
+          letter-spacing: 0px;
+        } 
+        }
       
     }
 `;
