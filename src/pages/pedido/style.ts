@@ -89,6 +89,27 @@ export const Main = styled.div`
     
     font-family: 'Lato', sans-serif;
     
+    .option{
+      display: flex;
+      gap: 50px;
+      align-items: end;
+      
+      h3{
+        display: flex;
+        justify-content: space-between;
+        color: ${colors.grayscale.darkLight};
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: 0px;
+        cursor: pointer;
+      }
+      
+      h3:hover{
+        color: ${colors.primary};
+      }
+    }
+    
     .search{
       display: flex;
       justify-content: end;

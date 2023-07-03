@@ -29,6 +29,14 @@ const Pedido: React.FC = () => {
         navigate('/cardapio');
     };
 
+    const handleMesas = () => {
+        navigate('/mesas');
+    };
+
+    const handleComandas = () => {
+        navigate('/comandas');
+    };
+
     const [precosCardapio, setPrecosCardapio] = useState<{ [key: number]: number }>({});
     const [valor, setValor] = useState<string>('');
 
@@ -70,6 +78,7 @@ const Pedido: React.FC = () => {
         fetchPedidos();
     }, []);
 
+
     useEffect(() => {
         if (valor === '') {
             setPedidosFiltrados(pedidos);
@@ -84,6 +93,8 @@ const Pedido: React.FC = () => {
     const redirectItemPedido = (pedido: Pedido) => {
         navigate(`/pedidoView?pedidoId=${pedido.id}`);
     };
+
+
 
     return (
         <style.Container>
@@ -103,7 +114,11 @@ const Pedido: React.FC = () => {
             </style.Header>
             <style.Main>
                 <div className="nav">
-                    <h1>Pedidos</h1>
+                    <div className="option">
+                        <h1 onClick={handlePedido}>Pedidos</h1>
+                        <h3 onClick={handleMesas}>Mesas</h3>
+                        <h3 onClick={handleComandas}>Comandas</h3>
+                    </div>
                     <div className="search">
                         <label htmlFor="search">
                             <div className="input">

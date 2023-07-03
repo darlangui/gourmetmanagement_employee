@@ -49,10 +49,9 @@ const Cardapio: React.FC = () => {
             }
         };
 
+
         fetchData();
     }, []);
-
-
     const handleEditItem = (item: Cardapio) => {
         navigate('/editItem', { state: { item } });
     };
