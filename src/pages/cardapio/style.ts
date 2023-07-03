@@ -163,13 +163,18 @@ export const Main = styled.div`
 
     background-color: #FAFAFA;
       
-      .card-content{
+    .card-content{
         width: 1280px;
         height: 100%;
         
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: wrap; 
         gap: 40px 90px;
+
+        ul{
+          display: flex;
+          flex-wrap: wrap;
+        }
         
         .card{
           background-color: ${colors.grayscale.white};
@@ -178,6 +183,7 @@ export const Main = styled.div`
           border-radius: 8px;
           border: 1px solid #E7E7E7;
           padding: 16px;
+          margin-right: 16px;
 
           display: flex;
           flex-direction: column;

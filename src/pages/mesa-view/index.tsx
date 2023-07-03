@@ -170,9 +170,9 @@ const MesaView: React.FC = () => {
                 <div className="nav">
                     <h1>Visualizar QR Code da Mesa {ID}</h1>
                     <div className="search">
-                        <button type="submit">
+                        {/* <button type="submit">
                             Salvar
-                        </button>
+                        </button> */}
                     </div>
                 </div>
                 <div className="content">

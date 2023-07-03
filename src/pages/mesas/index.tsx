@@ -19,8 +19,23 @@ interface Mesa {
 
 const Mesas: React.FC = () => {
   const [mesas, setMesas] = useState<Mesa[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
+
   const navigate = useNavigate();
+  const handlePedido = () => {
+      navigate('/pedido');
+  };
+
+  const handleCardapio = () => {
+      navigate('/cardapio');
+  };
+
+  const handleMesas = () => {
+      navigate('/mesas');
+  };
+
+  const handleComandas = () => {
+      navigate('/comandas');
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,10 +90,6 @@ const Mesas: React.FC = () => {
 
   };
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
   const filteredItems = mesas.filter((item) =>
     // item.nome.toLowerCase().startsWith(searchTerm.toLowerCase())
     item.id
@@ -94,40 +105,44 @@ const Mesas: React.FC = () => {
 
   return (
     <style.Container>
-      <style.Header>
-        <div className="user">
-          <img src={user} alt="Usuário" />
-          <div className="row" onClick={handleRowClick}>
-            <img src={row} alt="Flexa de Opções" />
-          </div>
-          {showLogout && (
-              <div className="logout-option" onClick={handleLogout}>
-                Sair
+       <style.Header>
+          <div className="user">
+              <img src={user} alt="Usuário" />
+              <div className="row" onClick={handleRowClick}>
+                  <img src={row} alt="Flexa de Opções" />
               </div>
-          )}
-        </div>
-        <div className="file">
-          <img src={file} alt="Cardapio" />
-        </div>
-        <div className="order">
-          <img src={order} alt="Pedidos" />
-        </div>
+              {showLogout && (
+                  <div className="logout-option" onClick={handleLogout}>
+                      Sair
+                  </div>
+              )}
+          </div>
+          <div className="file">
+              <img src={file} onClick={handleCardapio} alt="Cardapio"/>
+          </div>
+          <div className="order">
+              <img src={order} onClick={handlePedido} alt="Pedidos"/>
+          </div>
       </style.Header>
       <style.Main>
-        <div className="nav">
-          <h1>Mesas</h1>
-          <div className="search">
+      <div className="nav">
+        <div className="option">
+            <h1 onClick={handleMesas}>Mesas</h1>
+            <h3 onClick={handlePedido}>Pedidos</h3>
+            <h3 onClick={handleComandas}>Comandas</h3>
+        </div>
+        <div className="search">
             <label htmlFor="search">
-              <div className="input">
-                <img src={search} alt={"Pesquisar"} />
-                <input
-                  id="search"
-                  type="search"
-                  placeholder="Buscar ..."
-                  value={searchTerm}
-                  onChange={handleSearch}
-                />
-              </div>
+                {/* <div className="input">
+                    <img src={search} alt={"Pesquisar"}/>
+                    <input
+                        type="text"
+                        id="search"
+                        placeholder="Buscar ..."
+                        value={valor}
+                        onChange={handleChange}
+                    />
+                </div> */}
             </label>
             <img src={input} alt="Adicionar" onClick={handleAddItem} />
           </div>

@@ -54,6 +54,7 @@ const Login: React.FC = () => {
             </div>
 
             <form onSubmit={handleLogin}>
+                <h1>Bem Vindo ao Gourmet Management!</h1>
                 <label htmlFor="user">
                     <span>Usuário: </span>
                     <input type="text" value={username} onChange={e => setUsername(e.target.value)} />

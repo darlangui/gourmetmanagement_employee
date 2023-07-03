@@ -79,6 +79,57 @@ export const Container = styled.div`
         }
   }
   
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    border: 1.5px solid ${colors.primary};
+    background-color: ${colors.grayscale.lowLight};
+
+    h1{
+      font-family: 'Poppins', sans-serif;
+      color: ${colors.primary};
+      padding-bottom: 30px;
+    }
+
+    label{
+      display: flex;
+      flex-direction: column;
+      margin-top: 16px;
+      font-family: 'Lato', sans-serif;
+
+      input{
+        padding: 9px 16px;
+        width: 436px;
+        height: 40px;
+        border-radius: 8px;
+        border: 1.2px solid #E7E7E7;
+        margin-top: 4px;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 26px;
+      }
+    }
+
+    button{
+      width: 113px;
+      height: 48px;
+      border-radius: 8px;
+      background-color: ${colors.primary};
+      border: none;
+      color: ${colors.grayscale.white};
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 30px;
+      align-self: center
+    }
+
+
+
+  }
   
 
 `;

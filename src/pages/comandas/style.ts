@@ -106,6 +106,27 @@ export const Main = styled.div`
     
     font-family: 'Lato', sans-serif;
     
+    .option{
+      display: flex;
+      gap: 50px;
+      align-items: end;
+      
+      h3{
+        display: flex;
+        justify-content: space-between;
+        color: ${colors.grayscale.darkLight};
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: 0px;
+        cursor: pointer;
+      }
+      
+      h3:hover{
+        color: ${colors.primary};
+      }
+    }
+    
     .search{
       display: flex;
       justify-content: space-between;
@@ -161,13 +182,18 @@ export const Main = styled.div`
 
     background-color: #FAFAFA;
       
-      .card-content{
+    .card-content{
         width: 1280px;
         height: 100%;
         
         display: flex;
         flex-wrap: wrap; 
         gap: 40px 90px;
+
+        ul{
+          display: flex;
+          flex-wrap: wrap;
+        }
         
         .card{
           background-color: ${colors.grayscale.white};
@@ -176,6 +202,7 @@ export const Main = styled.div`
           border-radius: 8px;
           border: 1px solid #E7E7E7;
           padding: 16px;
+          margin-right: 16px;
 
           display: flex;
           flex-direction: column;
