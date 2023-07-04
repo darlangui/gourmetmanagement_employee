@@ -1,46 +1,54 @@
-# Getting Started with Create React App
+# Gourmet Management Employee
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Badge License: MIT](https://img.shields.io/github/license/darlangui/e-commerce?style=for-the-badge)
 
-## Available Scripts
+The **Gourmet Management Employee** is an application designed to assist in the control and management of tables, orders, and the menu in a restaurant. With an intuitive interface and powerful capabilities, the system allows restaurant staff to efficiently oversee and monitor all customer service-related operations.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+The system offers several features, including:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Order and Table Management
+- **Order creation** for customers, allowing for the logging of requests and individual account control.
+- **Adding, editing, and removal** of items from orders.
+- **Automatic calculation** of total order prices.
+- **Completion and closure** of orders.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Menu Management
+- **Addition and updating** of menu items, including descriptions, prices, and ingredients.
+- **Rapid search and filtering** of items by name.
 
-### `npm test`
+### 3. Additional Features
+- **User authentication**.
+- **Logging** of the history of orders and completed tasks.
+- **Generation of reports and statistics**, such as daily sales, most popular items, and waiter performance.
+- **Compatibility** with payment systems, printers, and other devices.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To install the Restaurant Management System, follow the steps below:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Download or clone** the system repository to your local environment:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+     git clone https://github.com/darlangui/gourmetmanagement_employee.git
+     ```
+   
+3. **Ensure** your development environment is properly configured (Node.JS).
+4. In the terminal, run:
+  
+   ```bash
+     npm install
+    ```
+   
+5. **Start** the application:
+  
+    ```bash
+     npm start
+    ```
+    
+6. The server will then begin running at localhost:3001.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## License
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is licensed under the MIT License.
