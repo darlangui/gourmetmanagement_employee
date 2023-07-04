@@ -52,3 +52,5 @@ To install the Restaurant Management System, follow the steps below:
 ## License
 
 This project is licensed under the MIT License.
+
+Copyright ©️ 2023 - Gourmet Management
