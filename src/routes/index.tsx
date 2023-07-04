@@ -57,7 +57,11 @@ const AppRouter: React.FC = () => {
                 />
                 <Route
                     path="/pedido"
-                    element={<Pedido />}
+                    element={
+                        <ProtectedRoute
+                            element={<Pedido />}
+                        />
+                    }
                 />
                <Route
                     path="/mesas"
