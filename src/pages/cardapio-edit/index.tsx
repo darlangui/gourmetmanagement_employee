@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import * as style from './style';
 import { api, setAuthHeader } from '../../services/api';
+import CurrencyInput from 'react-currency-input-field';
 import { useNavigate, useLocation } from 'react-router-dom';
 import user from "../../assets/elipse.png";
 import row from "../../assets/row.png";
@@ -103,6 +104,17 @@ const  CardapioEdit: React.FC = () => {
         }
     };
 
+    const formatCurrency = (value: string) => {
+        // Remove o símbolo de moeda e qualquer caractere não numérico
+        const cleanedValue = value.replace(/[^0-9]/g, '');
+
+        // Divide o valor por 100 para obter o número decimal correto
+        const floatValue = parseFloat(cleanedValue) / 100;
+
+        // Define o estado com o valor formatado
+        setPreco(floatValue.toFixed(2));
+    };
+
     const handleSave = () => {
         const token = window.localStorage.getItem('authToken');
 
@@ -191,12 +203,16 @@ const  CardapioEdit: React.FC = () => {
                     <div className="price">
                         <label htmlFor="preco">
                             <h3>Preço</h3>
-                            <input
-                                type="text"
+                            <CurrencyInput
                                 id="preco"
+                                name="preco"
                                 placeholder="R$ 0,00"
+                                prefix="R$ "
+                                decimalsLimit={2}
+                                allowNegativeValue={false}
                                 value={preco}
-                                onChange={(e) => setPreco(e.target.value)}
+                                onValueChange={(value: string | undefined) => setPreco(value || '')}
+                                onChange={(e) => formatCurrency(e.target.value)}
                             />
                         </label>
                     </div>

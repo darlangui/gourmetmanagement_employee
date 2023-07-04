@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { api, setAuthHeader } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+import CurrencyInput from 'react-currency-input-field';
 import * as style from './style';
 
 import user from '../../assets/elipse.png';
@@ -109,6 +110,17 @@ const CardapioAdd: React.FC = () => {
         navigation('/');
     };
 
+    const formatCurrency = (value: string) => {
+        // Remove o símbolo de moeda e qualquer caractere não numérico
+        const cleanedValue = value.replace(/[^0-9]/g, '');
+
+        // Divide o valor por 100 para obter o número decimal correto
+        const floatValue = parseFloat(cleanedValue) / 100;
+
+        // Define o estado com o valor formatado
+        setValor(floatValue);
+    };
+
     return (
         <style.Container>
             <style.Header>
@@ -158,7 +170,8 @@ const CardapioAdd: React.FC = () => {
                                 type="text"
                                 id="preco"
                                 placeholder="R$ 0,00"
-                                onChange={(e) => setValor(Number(e.target.value))}
+                                value={`R$ ${valor.toFixed(2)}`}
+                                onChange={(e) => formatCurrency(e.target.value)}
                             />
                         </label>
                     </div>
