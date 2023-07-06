@@ -16,6 +16,6 @@ GourmetManagement Employee : https://gourmet.jacson.com.br/  <br>
 
 Nos README de cada repositório é explicadado como funciona e como usar cada aplicação que faz o conjunto inteiro do sistema. <br>
 
-Documentação : <a href=“https://github.com/darlangui/gourmetmanagement_employee/blob/main/Casos%20de%20Uso%20-%20Gourmet%20Management.docx“>**Casos de Uso**</a>  <br>
+Documentação : <a href=“https://github.com/darlangui/gourmetmanagement_employee/blob/main/Casos%20de%20Uso%20-%20Gourmet%20Management.docx“>Casos de Uso</a>  <br>
 Teste : <a href=“https://github.com/darlangui/gourmetmanagement_employee/blob/main/Casos%20de%20Teste%20-%20Gourmet%20Management.xlsx“>**Testes**</a>  <br>
 Apresentação : <a href=“https://github.com/darlangui/gourmetmanagement_employee/blob/main/Gourmet%20Management.pdf“>**GourmetManagement**</a>  <br>
