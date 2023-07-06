@@ -1,10 +1,10 @@
-##Repositórios:
+## Repositórios:
 
 API : https://github.com/BernardoGatt0/gourmet_management.git <br>
 GourmetManagement - Cliente : https://github.com/guilhermeulbriki/gourmetmanagement.git  <br>
 GourmetManagement Employee : https://github.com/darlangui/gourmetmanagement_employee (Atual)  <br>
 
-##Links onde estão hospedados: 
+## Links onde estão hospedados: 
 
 API : https://api.jacson.com.br/  <br>
 GourmetManagement - Cliente : https://gourmet.jacson.com.br/  <br>
